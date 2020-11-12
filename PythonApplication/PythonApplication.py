@@ -1,6 +1,7 @@
 from ctypes import *
 import ctypes
 import numpy as np
+import os.path
 
 str_name = b"D:\\MyProgect\\Python\\329E_1.wbd"
 #str_name = b"D:\\Introskop_v2.5.8\\1547.wbd"
@@ -9,7 +10,8 @@ str_name = b"D:\\MyProgect\\Python\\329E_1.wbd"
 
 print(str_name)
 
-FindCouplings_dll = cdll.LoadLibrary('D:\\MyProgect\\Wbd\\x64\\Release\\WbdFindCoupl.dll')
+dllname = os.path.dirname(__file__) + '\WbdFindCoupl.dll'
+FindCouplings_dll = cdll.LoadLibrary(dllname)
 n = FindCouplings_dll.WbdMainFindCoupl(str_name)
 if n == -2:
   exit(-2)
