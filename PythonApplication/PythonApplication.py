@@ -3,17 +3,22 @@ import ctypes
 import numpy as np
 import os.path
 
-str_name = b"D:\\MyProgect\\Python\\329E_1.wbd"
-#str_name = b"D:\\Introskop_v2.5.8\\1547.wbd"
-#str_name = b"D:\\Introskop_v2.5.8\\скв_585_к_20_Нижне-Шапшинское.wbd"                     #??? имя с кириллицей не проходит ???
-#str_name = b"C:\\ИНТРОСКОП_v2.5.8\\329E_1.wbd"                                            #??? имя с кириллицей не проходит ???
+#wbd_name = "D:\\MyProgect\\Python\\329E_1.wbd".encode('cp1251')
+#wbd_name = 'C:\\ИНТРОСКОП_v2.5.8\\329E_1.wbd'.encode('cp1251')
+#wbd_name = 'D:\\Introskop_v2.5.8\\1547.wbd'.encode('cp1251')
+#wbd_name = 'D:/Introskop_v2.5.8/скв_585_к_20_Нижне-Шапшинское.wbd'.encode('cp1251')
+#wbd_name = "C:\\ИНТРОСКОП_v2.5.8\\5202.wbd".encode('cp1251')
+#wbd_name = "C:\\ИНТРОСКОП_v2.5.8\\11522_1.wbd".encode('cp1251')
+#wbd_name = "C:\\ИНТРОСКОП_v2.5.8\\16053.wbd".encode('cp1251')
+wbd_name = "C:\\ИНТРОСКОП_v2.5.8\\МИ-51_(15_ОЦ).wbd".encode('cp1251')
 
-print(str_name)
+print(wbd_name)
 
-dllname = os.path.dirname(__file__) + '\WbdFindCoupl.dll'
+dllname = os.path.dirname(__file__) + '\\WbdFindCoupl.dll'
 WbdFindCoupDll = cdll.LoadLibrary(dllname)
-n = WbdFindCoupDll.WbdMainFindCoupl(str_name) # найти муфты в файле. самая нижняя найденная муфта - первая. те нулевая
+n = WbdFindCoupDll.WbdMainFindCoupl(wbd_name) # найти муфты в файле. самая нижняя найденная муфта - первая. те нулевая
 if n == -2:
+    print('File not open')
     exit(-2) # файл не открылся
 
 print(n) # n - число найденных муфт
